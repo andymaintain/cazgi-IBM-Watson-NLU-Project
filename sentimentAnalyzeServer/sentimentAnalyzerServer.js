@@ -14,12 +14,13 @@ variables that you set up in the .env file*/
 
 const dotenv = require('dotenv');
 dotenv.config();
+
 function getNLUInstance() {
     /*Type the code to create the NLU instance and return it.
     You can refer to the image in the instructions document
     to do the same.*/
-    const api_key = process.env.API_KEY;
-    const api_url = process.env.API_URL;
+    let api_key = process.env.API_KEY;
+    let api_url = process.env.API_URL;
 
     const NaturalLanguageUnderstandingV1 = require('ibm-watson/natural-language-understanding/v1');
     const { IamAuthenticator } = require('ibm-watson/auth');
@@ -125,7 +126,7 @@ app.get("/text/emotion", (req,res) => {
     console.log(analysisResults);
     console.log(JSON.stringify(analysisResults.result.entities[0].emotion,null,2));
     //Please refer to the image to see the order of retrieval
-    return res.send(analysisResults.result.keywords[0].emotion,null,2);
+    //return res.send(analysisResults.result.keywords[0].emotion,null,2);
     return res.send(analysisResults);
   })
   .catch(err => {
@@ -156,7 +157,7 @@ app.get("/text/sentiment", (req,res) => {
     console.log(analysisResults);
     console.log(JSON.stringify(analysisResults.result.entities[0].sentiment,null,2));
     //Please refer to the image to see the order of retrieval
-    return res.send(analysisResults.result.keywords[0].sentiment,null,2);
+    //return res.send(analysisResults.result.keywords[0].sentiment,null,2);
     return res.send(analysisResults);
   })
   .catch(err => {
